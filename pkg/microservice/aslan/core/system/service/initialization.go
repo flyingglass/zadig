@@ -18,10 +18,8 @@ package service
 
 import (
 	"fmt"
-	"strconv"
-	"time"
-
 	"go.uber.org/zap"
+	"strconv"
 
 	"github.com/koderover/zadig/pkg/config"
 	"github.com/koderover/zadig/pkg/microservice/policy/core/repository/models"
@@ -98,18 +96,18 @@ func InitializeUser(username, password, company, email string, phone int64, reas
 		return fmt.Errorf("user initialization error: failed to create user, err: %s", err)
 	}
 
-	initializeInfo := &InitializeInfo{
-		CreatedAt: time.Now().Unix(),
-		Username:  username,
-		Phone:     phone,
-		Email:     email,
-		Company:   company,
-		Reason:    reason,
-		Address:   address,
-		Domain:    config.SystemAddress(),
-	}
-
-	err = reportRegister(initializeInfo)
+	//initializeInfo := &InitializeInfo{
+	//	CreatedAt: time.Now().Unix(),
+	//	Username:  username,
+	//	Phone:     phone,
+	//	Email:     email,
+	//	Company:   company,
+	//	Reason:    reason,
+	//	Address:   address,
+	//	Domain:    config.SystemAddress(),
+	//}
+	//
+	//err = reportRegister(initializeInfo)
 	if err != nil {
 		// don't stop the whole initialization process if the upload fails
 		logger.Errorf("failed to upload initialization info, error: %s", err)

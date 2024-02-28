@@ -209,6 +209,13 @@ func getUserFromJWT(token string) (jwtClaims, error) {
 }
 
 func JSONResponse(c *gin.Context, ctx *Context) {
+	// nil pointer panic
+	if ctx == nil {
+		c.Set(setting.ResponseError, "ctx is nil")
+		c.Abort()
+		return
+	}
+
 	if ctx.UnAuthorized {
 		if ctx.Err != nil {
 			c.Set(setting.ResponseError, ctx.Err)
